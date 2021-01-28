@@ -12,13 +12,16 @@ from PyQt5.QtCore import QPoint, Qt
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from mainWindow import Ui_MainWindow
+from addEditCoffeeForm import Ui_Form
 
-class window(QMainWindow):
+
+class window(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
         
-        self.fname = "coffee.sqlite"
+        self.fname = "data\coffee.sqlite"
                 
         self.con = sqlite3.connect(self.fname)
         
@@ -66,10 +69,10 @@ class window(QMainWindow):
         self.tableWidget.resizeColumnsToContents()        
         
 
-class Form(QWidget):
+class Form(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
         self.statusbar = QStatusBar(self)
         self.statusbar.move(0, 420)
         self.statusbar.resize(494, 20)   
